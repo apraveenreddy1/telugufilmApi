@@ -1,24 +1,10 @@
 const express = require("express");
-const mysql = require("mysql");
+
+const con = require("./db");
 
 const app = express();
 
 app.use(express.json());
-
-//Database connection
-const con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "Navya@26#",
-});
-
-con.connect((err) => {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log("Database connected successfully!");
-  }
-});
 
 app.delete("/delete/:id", (req, res) => {
   const delid = req.params.id;
@@ -32,7 +18,6 @@ app.delete("/delete/:id", (req, res) => {
         res.status(500).send("Database error");
       } else {
         res.send("DELETED");
-        console.log(result);
       }
     }
   );

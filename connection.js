@@ -1,17 +1,8 @@
 const express = require("express");
-const mysql = require("mysql");
+
+const con = require("./db");
+
 const app = express();
-
-const con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "Navya@26#",
-});
-
-con.connect(function (err) {
-  if (err) throw err;
-  console.log("Connected!");
-});
 
 app.get("/fetch", (req, res) => {
   con.query(
